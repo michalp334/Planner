@@ -20,11 +20,9 @@ object Planner extends App with ParseDate {
  
   //roboczy test
   addDay("10/05/2016")
-  //var currentDay - jak ktoœ daje modify to musi byæ wiadomo o który dzieñ chodzi
   var temp = Days(ParseDate("10/05/2016").get)
   temp.TaskContainer(1).name="do sth"
   temp.TaskContainer(1).modifyInterval("14:05", "16:30")
-  
   //koniec testu
   
   printOnStart
