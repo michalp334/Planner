@@ -1,33 +1,28 @@
 import java.util.Date
 
-
 object Planner extends App with ParseDate {
-  
-   var Days = Map[Date, Day]() //map to store all days created by user
-   
-  def addDay(dateText: String) =  {
-    var date = ParseDate(dateText)
-    if ( date.isSuccess) Days += (date.get -> new Day(date.get))
-    else println ("Uncorrect date format" )
+
+  var Days = Map[Date, Day]() //map to store all days created by user
+
+  def addDay(dateText: String): Unit = {
+    val date = ParseDate(dateText)
+    if (date.isSuccess) Days += (date.get -> new Day(date.get))
+    else println("Uncorrect date format")
   }
- 
-  def printOnStart = {
-  var temp = Days.toList.sortBy{_._1} //on the start of the program print the earliest day (for now)
-  val (key, value) = temp.head
-  Days(key).print
+
+  def printOnStart: Unit = {
+    val sortedDays = Days.toList.sortBy { _._1 } //on the start of the program print the earliest day (for now)
+    val (key, value) = sortedDays.head
+    Days(key).print
   }
-  
- 
+
   //roboczy test
   addDay("10/05/2016")
-  //var currentDay - jak ktoœ daje modify to musi byæ wiadomo o który dzieñ chodzi
-  var temp = Days(ParseDate("10/05/2016").get)
-  temp.TaskContainer(1).name="do sth"
-  temp.TaskContainer(1).modifyInterval("14:05", "16:30")
-  
+  var day = Days(ParseDate("10/05/2016").get)
+  day.taskContainer(1).name = "do sth"
+  day.taskContainer(1).modifyInterval(Some("14:05"), Some("16:30"))
   //koniec testu
-  
+
   printOnStart
-  
-  
+
 }
