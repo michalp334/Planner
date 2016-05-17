@@ -24,5 +24,6 @@ object Planner extends App with ParseDate {
   //koniec testu
 
   printOnStart
+}  
 
-}
+
